@@ -1,6 +1,6 @@
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { title, colors, parameters } from "../../global/styles";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Header from "../../components/Header";
 import { Button, Icon, SocialIcon } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
@@ -8,12 +8,17 @@ import { Formik } from 'formik';
 import { values } from "lodash";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {SignInContext} from '../../context/authContext';
+
+
 GoogleSignin.configure({
     webClientId: '874777116491-j6eo9n6pnq0r6p7nijfjp4jjl8rf5fap.apps.googleusercontent.com',
 });
 
 
 export default function SignInScreen({ navigation }) {
+
+    const{dispatchSignedIn} = useContext(SignInContext)
 
     const [textInput2Focused, setTextInput2Focused] = useState(false)
     const textInput1 = useRef(1)
@@ -24,7 +29,8 @@ export default function SignInScreen({ navigation }) {
             const {email,password}=data
         const user = await auth().signInWithEmailAndPassword(email,password)
         if(user){
-            console.log("USER SIGN IN SUCCED")
+            console.log(user)
+            dispatchSignedIn({type:'UPDATE_SIGN_IN',payload:{userToken:'singed-in'}})          
         }
         } catch (error) {
             Alert.alert(
@@ -158,6 +164,7 @@ export default function SignInScreen({ navigation }) {
                     title="Create An Account"
                     buttonStyle={styles.buttonCreate}
                     titleStyle={styles.buttonCreateTitle}
+                    onPress={()=>{navigation.navigate("SignUpScreen")}}
                 />
             </View>
 

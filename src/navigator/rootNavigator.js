@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import {NavigationContainer} from "@react-navigation/native";
 import AuthStack from "./authNavigator";
+import AppStack from "./appStack";
+import { SignInContext } from "../context/authContext";
 
 export default function RootNavigator(){
-    return(
+    const {signedIn,}=useContext(SignInContext)
+    return( 
         <NavigationContainer>
-            <AuthStack/>
+            {
+                signedIn.userToken !== 'singed-in' ?(
+                    <AuthStack/>
+                ) : (
+                    <AppStack/>
+                )
+            }
         </NavigationContainer>
     )
 }

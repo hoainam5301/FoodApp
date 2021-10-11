@@ -58,7 +58,7 @@ export default function MenuProductScreen({navigation,route}) {
                     type="material-community"
                     color="black"
                     size={25}
-                    onPress={() => { setModalVisible(false) }}
+                    onPress={() => navigation.goBack()}
                 />
                 <Text style={styles.text1} >Menu </Text>
             </View>

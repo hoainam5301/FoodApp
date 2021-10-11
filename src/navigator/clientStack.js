@@ -15,10 +15,10 @@ export default function ClientStack({navigation,route}) {
         const routeName= getFocusedRouteNameFromRoute(route);
         if(routeName==="RestaurantHomeScreen" || "MenuProductScreen" )
         {
-            navigation.setOptions({tabBarVisible:false})           
+            //navigation.setOptions({tabBarVisible:false})           
         }
         else {
-            navigation.setOptions({tabBarVisible:true}) 
+            //navigation.setOptions({tabBarVisible:true}) 
         }
     }, [navigation,route])
     return (

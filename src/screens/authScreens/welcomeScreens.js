@@ -45,6 +45,7 @@ export default function WelcomeScreen({navigation}) {
                         title="Create An Account"
                         buttonStyle={styles.buttonCreate}
                         titleStyle={styles.buttonCreateTitle}
+                        onPress={()=>{navigation.navigate("SignUpScreen")}}
                     />
                 </View>
             </View>
