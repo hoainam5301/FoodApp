@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 import { values } from "lodash";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import {SignInContext} from '../../context/authContext';
+import { SignInContext } from '../../context/authContext';
 
 
 GoogleSignin.configure({
@@ -18,34 +18,35 @@ GoogleSignin.configure({
 
 export default function SignInScreen({ navigation }) {
 
-    const{dispatchSignedIn} = useContext(SignInContext)
+    const { dispatchSignedIn } = useContext(SignInContext)
 
     const [textInput2Focused, setTextInput2Focused] = useState(false)
     const textInput1 = useRef(1)
     const textInput2 = useRef(2)
-
+   
     async function SignIn(data) {
         try {
-            const {email,password}=data
-        const user = await auth().signInWithEmailAndPassword(email,password)
-        if(user){
-            console.log(user)
-            dispatchSignedIn({type:'UPDATE_SIGN_IN',payload:{userToken:'singed-in'}})          
-        }
+            const { email, password } = data
+            const user = await auth().signInWithEmailAndPassword(email, password)
+            if (user) {
+                //console.log(user)
+                dispatchSignedIn({ type: 'UPDATE_SIGN_IN', payload: { userToken: 'singed-in' } })
+            }
         } catch (error) {
             Alert.alert(
                 error.name,
                 error.message
             )
-        }          
+        }
     }
 
-    async function SignInGoogle() {  
+    async function SignInGoogle() {
         try {
             const { idToken } = await GoogleSignin.signIn();
+            console.log({idToken})
         } catch (error) {
-            console.log("Loiiiiiiiiiiiiiiiiiiiiiiiiiiiii",error)
-        }  
+            console.log("Loiiiiiiiiiiiiiiiiiiiiiiiiiiiii", error)
+        }
     }
 
     return (
@@ -164,7 +165,7 @@ export default function SignInScreen({ navigation }) {
                     title="Create An Account"
                     buttonStyle={styles.buttonCreate}
                     titleStyle={styles.buttonCreateTitle}
-                    onPress={()=>{navigation.navigate("SignUpScreen")}}
+                    onPress={() => { navigation.navigate("SignUpScreen") }}
                 />
             </View>
 

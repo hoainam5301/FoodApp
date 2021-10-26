@@ -9,7 +9,7 @@ import FoodCard from "../components/foodCard";
 import CountDown from "react-native-countdown-component";
 
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
@@ -80,14 +80,14 @@ export default function HomeScreen({navigation}) {
                     <Text style={styles.headerText}>Categories</Text>
                 </View>
                 <View>
-                <View style = {{flexDirection : 'row', alignItems:"center",marginTop:10,}}>
-                        <Text style={{marginLeft:15,fontSize:20,marginRight:5}} >Option Changing In  </Text>
-                        <CountDown 
+                    <View style={{ flexDirection: 'row', alignItems: "center", marginTop: 10, }}>
+                        <Text style={{ marginLeft: 15, fontSize: 20, marginRight: 5 }} >Option Changing In  </Text>
+                        <CountDown
                             until={864000}
                             style={18}
-                            digitStyle={{backgroundColor:"lightgreen"}}
-                            timeToShow={['D','H', 'M', 'S']}
-                            timeLabels = {{d:'Days',h:'Hours',m:'Min',s:'Sec'}}
+                            digitStyle={{ backgroundColor: "lightgreen" }}
+                            timeToShow={['D', 'H', 'M', 'S']}
+                            timeLabels={{ d: 'Days', h: 'Hours', m: 'Min', s: 'Sec' }}
                         />
                     </View>
                     <FlatList
@@ -159,38 +159,38 @@ export default function HomeScreen({navigation}) {
                 </View>
                 <View style={{ width: Dimensions.get('window').width, paddingTop: 10, }} >
                     {
-                        restaurantsData.map( item => (
-                            <View  key={item.id} style={{paddingBottom: 20,}} >
+                        restaurantsData.map(item => (
+                            <View key={item.id} style={{ paddingBottom: 20, }} >
                                 <FoodCard
-                                                screenWidth={Dimensions.get('window').width * 0.95}
-                                                images={item.images}
-                                                restaurantName={item.restaurantName}
-                                                numberOfReview={item.numberOfReview}
-                                                businessAddress={item.businessAddress}
-                                                farAway={item.farAway}
-                                                averageReview={item.averageReview}
-        
-                                            />
+                                    screenWidth={Dimensions.get('window').width * 0.95}
+                                    images={item.images}
+                                    restaurantName={item.restaurantName}
+                                    numberOfReview={item.numberOfReview}
+                                    businessAddress={item.businessAddress}
+                                    farAway={item.farAway}
+                                    averageReview={item.averageReview}
+
+                                />
                             </View>
-                            ))
+                        ))
                     }
                 </View>
             </ScrollView>
             {delivery &&
                 <View style={styles.floatButton}>
-                <TouchableOpacity onPress={()=>{navigation.navigate("RestaurantMapScreen")}} >
-                    <Icon
-                        name="place"
-                        type="material"
-                        size={32}
-                        color={colors.button}
-                        style={{marginTop: 3}}
-                    />
-                    <Text style={{color:colors.grey2,alignItems:'center'}} >Map</Text>
-                </TouchableOpacity>
-            </View>
+                    <TouchableOpacity onPress={() => { navigation.navigate("RestaurantMapScreen") }} >
+                        <Icon
+                            name="place"
+                            type="material"
+                            size={32}
+                            color={colors.button}
+                            style={{ marginTop: 3 }}
+                        />
+                        <Text style={{ color: colors.grey2, alignItems: 'center' }} >Map</Text>
+                    </TouchableOpacity>
+                </View>
             }
-            
+
         </View>
     )
 }
@@ -248,13 +248,13 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 16
     },
-    floatButton:{
-        position:'absolute',
-        bottom:10,right:15,
-        backgroundColor:'white',
-        elevation:10,
-        width:60,height:60,
-        borderRadius:30,
-        alignItems:'center'
+    floatButton: {
+        position: 'absolute',
+        bottom: 10, right: 15,
+        backgroundColor: 'white',
+        elevation: 10,
+        width: 60, height: 60,
+        borderRadius: 30,
+        alignItems: 'center'
     }
 })
